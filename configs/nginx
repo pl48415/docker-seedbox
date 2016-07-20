@@ -1,0 +1,26 @@
+
+server {
+        listen 80;
+
+        server_name 127.0.0.1;
+        root /var/www;
+        index index.html index.php index.htm;
+
+
+        location / {
+               try_files $uri $uri/ =404;
+        }
+
+        location ^~ /rutorrent {
+
+               include /etc/nginx/conf.d/php;
+               include /etc/nginx/conf.d/cache;
+        }
+
+#include /etc/nginx/sites-available/dload-loc;
+
+        location ~ /\.ht {
+                deny all;
+        }
+
+}
